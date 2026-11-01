@@ -1,0 +1,11 @@
+{
+  "name": "architecture",
+  "displayName": "Architecture",
+  "version": "0.2.0-beta.1",
+  "description": "System design: the architect agent, the four C4-diagram agents (context, container, component, code), api-design and before-you-build skills, and the /plan command.",
+  "author": { "name": "Mohammed Nokri" },
+  "homepage": "https://github.com/nokri-mohammed/claude-team",
+  "repository": "https://github.com/nokri-mohammed/claude-team",
+  "license": "MIT",
+  "keywords": ["architecture", "adr", "c4", "api-design"]
+}

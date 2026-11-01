@@ -1,57 +1,86 @@
 <img src="assets/logo/readme-header.png" alt="Claude Team" width="420">
 
-Canonical Claude Code agents, skills, commands, and hooks. Copy only the team your project needs.
+A marketplace of Claude Code plugins: agents, skills, commands, and hooks for software
+engineering. Install only the plugins a project needs.
 
-Claude Team is a curated collection of [Claude Code](https://code.claude.com) subagents
-(architect, code reviewer, security reviewer, TDD guide, doc updater, C4 diagrammer, UI designer),
-the skills that back them, slash commands that delegate to them, and enforcement hooks. It's meant
-to be copied piecemeal into any project's `.claude/` directory, not installed wholesale.
+Claude Team packages [Claude Code](https://code.claude.com) subagents (architect, code reviewer,
+security reviewer, TDD guide, doc updater, C4 diagrammer, UI designer), the skills that back them,
+slash commands that delegate to them, and enforcement hooks, as six focused plugins.
+
+## This is your hub
+
+Keep this repo as one place: your whole team, in one spot, next to your projects, never inside
+one.
+
+```
+~/code/
+├── claude-team/          # this repo, your hub
+└── projects/
+    ├── my-app/
+    └── another-app/
+```
+
+A project doesn't copy files out of the hub. It adds the hub as a marketplace, then installs the
+plugins it needs.
+
+```bash
+cd ~/code/projects/my-app
+claude plugin marketplace add ~/code/claude-team
+claude plugin install review@claude-team
+claude plugin install tdd@claude-team
+```
+
+Start with one or two plugins. Add more only as the project's scope grows. The full roster, with
+what each plugin bundles, is in [`HUB.md`](HUB.md).
+
+## How work flows: the CEO and the executives
+
+You are the CEO. You decide what gets built, not how.
+
+The main Claude session in your project is your chief of staff. You hand it a goal, and it breaks
+that goal into tickets.
+
+Each ticket goes to the executive who owns that function:
+
+| Ticket | Executive |
+|---|---|
+| System design, an ADR | `architect` (`architecture` plugin) / `/plan` |
+| Code review | `code-reviewer` (`review` plugin) / `/code-review` |
+| A security-sensitive diff | `security-reviewer` (`review` plugin) |
+| Test-first development | `tdd-guide` (`tdd` plugin) / `/tdd` |
+| UI, Figma-to-code, a logo | `designer` (`designer` plugin) |
+| Docs out of date after a change | `doc-updater` (`essentials` plugin) |
+
+You read the output. The executives do the work. That's the whole model.
 
 ## The Guides
 
-- **[GUIDE.md](GUIDE.md)**: shorthand / TL;DR. What this is, 60-second setup, the four building
-  blocks, when to delegate. **Read this first.**
+- **[GUIDE.md](GUIDE.md)**: shorthand / TL;DR. 60-second setup, the four building blocks, when
+  to delegate. **Read this first.**
 - **[docs/LONGFORM_GUIDE.md](docs/LONGFORM_GUIDE.md)**: advanced. How agent/skill frontmatter
   actually behaves, the SKILL.md size limit, building and verifying hooks, MCP wiring, and the
   versioning gotchas this hub hit while being built. Read it once you're extending the hub, not
   before.
 
-## Why copy-based, not a plugin
+## The six plugins
 
-A plugin install is all-or-nothing. This repo is deliberately the opposite. A small project copies
-in two or three agents; a larger one copies in the whole team. See `HUB.md` for the full roster and
-rationale.
+| Plugin | Bundles | Install |
+|---|---|---|
+| `review` | code-reviewer, security-reviewer, coding-standards, security-review, Conventional Comments, `/code-review` | `claude plugin install review@claude-team` |
+| `tdd` | tdd-guide, tdd-workflow, `/tdd` | `claude plugin install tdd@claude-team` |
+| `architecture` | architect, the four C4 agents, api-design, before-you-build, `/plan` | `claude plugin install architecture@claude-team` |
+| `designer` | designer, UI/logo skills, bundled Figma + Playwright MCP | `claude plugin install designer@claude-team` |
+| `patterns` | frontend-patterns, backend-patterns (no dedicated agent) | `claude plugin install patterns@claude-team` |
+| `essentials` | doc-updater, verification-loop, asd-ste100, `/build-fix`, `/refactor-clean`, the backlog and commit-message hooks | `claude plugin install essentials@claude-team` |
 
-## Quick start
-
-```
-your-project/
-└── .claude/
-    ├── agents/        # copy only the .md files you need from agents/
-    ├── skills/        # copy only the directories you need from skills/
-    ├── commands/      # copy only the .md files you need from commands/
-    └── hooks/         # copy hooks.json + scripts/ as a pair
-```
-
-See `HUB.md` → **Project bootstrap** for the full step-by-step, including the optional
-`.mcp.json` for the `designer` agent's Figma + Playwright integration.
-
-## What's in here
-
-| Directory | Contents |
-|---|---|
-| `agents/` | Subagent definitions: architect, reviewers, tdd-guide, doc-updater, C4 diagrammer, designer |
-| `skills/` | Skills the agents above load: coding standards, framework patterns, security review, UI/UX |
-| `commands/` | Slash commands that delegate to the agents (`/plan`, `/code-review`, `/tdd`, and more) |
-| `hooks/` | A backlog-entry Stop hook and a Conventional-Commits warning hook |
-| `scripts/validate-hub.sh` | Self-check: skill line limits, agent `tools:` fields, no dangling references |
-
-Full roster, sources, and the bootstrap/versioning workflow: see [`HUB.md`](HUB.md).
+Each plugin updates independently: `claude plugin update <plugin>@claude-team`, or turn on
+auto-update for the `claude-team` marketplace. Full roster, sources, and rationale: see
+[`HUB.md`](HUB.md).
 
 ## Key Concepts
 
 **Agents** are subagents with a restricted tool set, invoked for a specific job. Example:
-[`agents/security-reviewer.md`](agents/security-reviewer.md).
+[`plugins/review/agents/security-reviewer.md`](plugins/review/agents/security-reviewer.md).
 
 ```yaml
 ---
@@ -64,7 +93,7 @@ tools: Read, Grep, Glob, Bash
 **Skills** are workflow or reference documents an agent loads for a task: a methodology
 (`tdd-workflow`), a pattern library (`frontend-patterns`), or a domain reference
 (`accessibility-compliance`). Example: the red-green-refactor loop in
-[`skills/tdd-workflow/SKILL.md`](skills/tdd-workflow/SKILL.md).
+[`plugins/tdd/skills/tdd-workflow/SKILL.md`](plugins/tdd/skills/tdd-workflow/SKILL.md).
 
 ```
 1. Write a failing test (RED)
@@ -74,12 +103,13 @@ tools: Read, Grep, Glob, Bash
 ```
 
 **Commands** are slash commands that delegate to an agent instead of re-deriving its process
-inline. Example: [`commands/code-review.md`](commands/code-review.md) delegates `/code-review`
-to the `code-reviewer` agent, and to `security-reviewer` too when the diff warrants it.
+inline. Example: [`plugins/review/commands/code-review.md`](plugins/review/commands/code-review.md)
+delegates `/code-review` to the `code-reviewer` agent, and to `security-reviewer` too when the
+diff warrants it.
 
 **Hooks** fire on tool events and can warn or block. Example:
-[`hooks/scripts/check-commit-msg.sh`](hooks/scripts/check-commit-msg.sh) warns (non-blocking)
-when a commit doesn't follow Conventional Commits.
+[`plugins/essentials/hooks/scripts/check-commit-msg.sh`](plugins/essentials/hooks/scripts/check-commit-msg.sh)
+warns (non-blocking) when a commit doesn't follow Conventional Commits.
 
 ```bash
 msg=$(git log -1 --format=%s 2>/dev/null)
@@ -100,14 +130,15 @@ Releases and `CHANGELOG.md` for the release history.
 ## Running Tests
 
 ```bash
-npm test   # scripts/validate-hub.sh: SKILL.md line limits, agent tools: fields, dangling refs, JSON validity
+npm test   # scripts/validate-hub.sh: SKILL.md line limits, agent tools: fields, dangling refs,
+           # JSON validity, and claude plugin validate against every plugin
 ```
 
-Run it before committing, and after adding any new agent or skill.
+Run it before committing, and after adding or changing any plugin.
 
 ## Contributing
 
-Contributions are welcome: a new agent, a new skill, a better hook, or an MCP config for a tool
+Contributions are welcome: a new agent, a new skill, a better hook, or a new plugin for a role
 this hub doesn't cover yet. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the process and the
 compliance bar every addition has to clear (explicit `tools:`, SKILL.md under 500 lines, no
 dangling references, `npm test` passing).

@@ -2,23 +2,21 @@
 
 ## What this is
 
-A hub of canonical Claude Code agents, skills, commands, and hooks. You don't install it whole.
-You copy the handful of pieces a given project actually needs into that project's `.claude/`.
+A marketplace of six Claude Code plugins. You don't install the whole hub. You install only the
+plugins a given project needs.
 
 ## 60-second setup
 
 ```bash
-mkdir -p <your-project>/.claude/{agents,skills,commands,hooks}
-# copy only what you need:
-cp agents/code-reviewer.md      <your-project>/.claude/agents/
-cp -r skills/coding-standards    <your-project>/.claude/skills/
-cp commands/code-review.md      <your-project>/.claude/commands/
-cp hooks/hooks.json hooks/scripts -r  <your-project>/.claude/hooks/
+cd <your-project>
+claude plugin marketplace add ~/code/claude-team   # path to wherever you cloned this repo
+claude plugin install review@claude-team
+claude plugin install tdd@claude-team               # repeat per plugin you need
 ```
 
-Start minimal (one engineer-role agent, one reviewer) and add more only as the project's scope
-actually demands it. Full step-by-step, including the optional Figma/Playwright MCP setup for
-`designer`: `HUB.md` → **Project bootstrap**.
+Start minimal (`review` plus one specialist plugin) and add more only as the project's scope
+actually demands it. Full step-by-step, including the Figma/Playwright MCP setup bundled in
+`designer`: `HUB.md` → **Install into a project**.
 
 ## The four building blocks
 
@@ -29,17 +27,25 @@ actually demands it. Full step-by-step, including the optional Figma/Playwright 
 | **Command** | a slash command that delegates to an agent | `/code-review`, `/plan` |
 | **Hook** | fires on a tool event, warns or blocks | backlog-entry check, commit-message check |
 
-## When to delegate
+Each plugin bundles the agents, skills, commands, and hooks for one area of work. See `HUB.md` for
+what each of the six plugins contains.
 
-| Task | Use |
-|---|---|
-| System design / ADRs | `architect` / `/plan` |
-| Code review | `code-reviewer` / `/code-review` |
-| Security-sensitive diff | `security-reviewer` |
-| Test-first development | `tdd-guide` / `/tdd` |
-| UI/UX, Figma-to-code, logo/brand design | `designer` |
+## How work flows: the CEO and the executives
 
-A single-file task doesn't need any of this. Scale the team to the task.
+You are the CEO: you set direction. The main Claude session in your project is your chief of
+staff: it breaks your direction into tickets. Each ticket goes to the executive (agent) that owns
+it, and you review what comes back.
+
+| Ticket | Executive | Plugin |
+|---|---|---|
+| System design / ADRs | `architect` / `/plan` | `architecture` |
+| Code review | `code-reviewer` / `/code-review` | `review` |
+| Security-sensitive diff | `security-reviewer` | `review` |
+| Test-first development | `tdd-guide` / `/tdd` | `tdd` |
+| UI/UX, Figma-to-code, logo/brand design | `designer` | `designer` |
+
+A single-file task doesn't need any of this. Scale the team to the task, one plugin install at a
+time.
 
 ## Versioning, in one line
 

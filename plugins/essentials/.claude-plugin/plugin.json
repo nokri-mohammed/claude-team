@@ -1,0 +1,11 @@
+{
+  "name": "essentials",
+  "displayName": "Essentials",
+  "version": "0.2.0-beta.1",
+  "description": "General project hygiene with no single specialist role: the doc-updater agent, the verification-loop and asd-ste100 skills, /build-fix and /refactor-clean commands, and the backlog and commit-message hooks.",
+  "author": { "name": "Mohammed Nokri" },
+  "homepage": "https://github.com/nokri-mohammed/claude-team",
+  "repository": "https://github.com/nokri-mohammed/claude-team",
+  "license": "MIT",
+  "keywords": ["docs", "hooks", "hygiene", "conventional-commits"]
+}

@@ -3,13 +3,18 @@
 Read `GUIDE.md` first. This covers the mechanics underneath, and the specific problems we hit
 building this hub. Useful once you're extending it, not before.
 
-## Why copy-based, not a plugin
+## Why six plugins, not one
 
-A plugin install (`.claude-plugin/marketplace.json`) is one command, but it's all-or-nothing. A
-small project would pull in `designer`'s Figma/Playwright MCP wiring it'll never use. This hub
-stays copy-based because the selective-subset model (one agent here, three there) is the actual
-point. Revisit this if the hub ever stabilizes to where manual re-copying, not granularity,
-becomes the bottleneck.
+A single plugin install is all-or-nothing: install it, and every agent, skill, command, and hook
+inside loads. A small project that only wants `code-reviewer` shouldn't also pull in `designer`'s
+Figma/Playwright MCP wiring.
+
+This hub splits into six plugins (`review`, `tdd`, `architecture`, `designer`, `patterns`,
+`essentials`) along the natural fault lines in `HUB.md`'s roster, so a project installs only what
+it needs while still getting real update propagation: `claude plugin update <plugin>@claude-team`
+pulls a fix without a manual re-copy, and the marketplace's auto-update can do it without even
+that. See `README.md` → **The six plugins** for the current split. Add a new plugin, don't grow an
+existing one past one coherent job, when a new role doesn't fit any of the six.
 
 ## Agent frontmatter, precisely
 
@@ -59,13 +64,18 @@ Don't write a hook and assume it fires. The sequence that actually catches failu
 4. Only after both pass, wrap the command with `2>/dev/null || true` (unless you want it to be
    able to block; most checks in this hub are warnings, not blockers, by design; see
    `check-commit-msg.sh` vs `check-backlog.sh` for the two patterns).
-5. If a hook is wired correctly but never fires in a live session, the settings watcher may not be
-   watching that `.claude/` directory yet: it only watches directories that had a settings file
-   present when the session started. Reopening `/hooks` or restarting the session reloads it.
+5. In a plugin's `hooks/hooks.json`, reference the plugin's own bundled scripts with
+   `${CLAUDE_PLUGIN_ROOT}`, never a path like `.claude/hooks/scripts/...`: a plugin isn't copied
+   into the installing project's `.claude/`, so that path doesn't exist there. See
+   `plugins/essentials/hooks/hooks.json` for the pattern.
+6. If a hook is wired correctly but never fires in a live session, run `/reload-plugins` after
+   installing or updating the plugin; Claude Code doesn't pick up a hook change mid-session
+   without it.
 
-## MCP wiring (the `designer` agent)
+## MCP wiring (the `designer` plugin)
 
-`.mcp.json` declares two project-scoped servers:
+`plugins/designer/.mcp.json` declares two servers, auto-discovered because `.mcp.json` at a
+plugin's root is the standard location Claude Code scans:
 
 ```json
 {
@@ -76,9 +86,9 @@ Don't write a hook and assume it fires. The sequence that actually catches failu
 }
 ```
 
-Copying this into a project's root (not `.claude/`) means Claude Code prompts to approve both
-servers on first run there. Figma's server needs a Dev Mode seat (Hobby-tier accounts can't use
-it); Playwright's needs Node.js 18+ on whatever machine runs the session.
+Installing the `designer` plugin into a project makes Claude Code prompt to approve both servers
+on first run there. Figma's server needs a Dev Mode seat (Hobby-tier accounts can't use it);
+Playwright's needs Node.js 18+ on whatever machine runs the session.
 
 ## Versioning mechanics, in full
 
@@ -94,11 +104,19 @@ tags the commit, no CI, no publish step. Two gotchas we hit setting this up:
   `.versionrc.json` pins `{"preset": "conventionalcommits"}` to force the preset that's actually
   installed, sidestepping the broken auto-resolution. Verify this is still needed if your Node
   version changes.
+- **Six manifests, one version**: `commit-and-tag-version` only bumps `package.json`. It doesn't
+  know about `plugins/*/.claude-plugin/plugin.json`. Bump all six by hand after every release (see
+  `HUB.md` → Versioning & Releases), or installers see a stale version in `claude plugin list`.
 
 ## Writing something that'll pass `validate-hub.sh`
 
-- New agent: explicit `tools:` field, specific `description`, added to the agents table in
-  `HUB.md`.
-- New skill: `SKILL.md` ≤500 lines, every `references/*.md` it mentions actually exists, added to
-  the skills table in `HUB.md`.
-- Run `npm test` before committing: it's the same four checks spelled out in `CONTRIBUTING.md`.
+- New agent: explicit `tools:` field, specific `description`, placed in the right
+  `plugins/<name>/agents/`, added to that plugin's table in `HUB.md`.
+- New skill: `SKILL.md` ≤500 lines, every `references/*.md` it mentions actually exists, placed
+  in the right `plugins/<name>/skills/`, added to that plugin's table in `HUB.md`.
+- New plugin: `plugins/<name>/.claude-plugin/plugin.json` with at least `name`, `version`,
+  `description`; add an entry to `.claude-plugin/marketplace.json` with
+  `"source": "<name>"`, since `metadata.pluginRoot` is set to `./plugins`.
+- Run `npm test` before committing: SKILL.md limits, agent `tools:` fields, dangling references,
+  JSON validity, and `claude plugin validate` against every plugin, the same checks spelled out
+  in `CONTRIBUTING.md`.

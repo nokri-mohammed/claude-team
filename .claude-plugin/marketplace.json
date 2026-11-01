@@ -1,0 +1,46 @@
+{
+  "name": "claude-team",
+  "owner": { "name": "Mohammed Nokri" },
+  "description": "A team of Claude Code agents, skills, commands, and hooks. Install only the plugins a project needs.",
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "review",
+      "source": "review",
+      "category": "quality",
+      "tags": ["code-review", "security-review"]
+    },
+    {
+      "name": "tdd",
+      "source": "tdd",
+      "category": "quality",
+      "tags": ["testing", "tdd"]
+    },
+    {
+      "name": "architecture",
+      "source": "architecture",
+      "category": "design",
+      "tags": ["architecture", "adr", "c4"]
+    },
+    {
+      "name": "designer",
+      "source": "designer",
+      "category": "design",
+      "tags": ["ui", "ux", "figma", "logo-design"]
+    },
+    {
+      "name": "patterns",
+      "source": "patterns",
+      "category": "reference",
+      "tags": ["frontend", "backend", "patterns"]
+    },
+    {
+      "name": "essentials",
+      "source": "essentials",
+      "category": "hygiene",
+      "tags": ["docs", "hooks"]
+    }
+  ]
+}

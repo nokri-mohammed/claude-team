@@ -1,0 +1,11 @@
+{
+  "name": "tdd",
+  "displayName": "TDD",
+  "version": "0.2.0-beta.1",
+  "description": "Test-first development: the tdd-guide agent, the red-green-refactor tdd-workflow skill, and the /tdd command.",
+  "author": { "name": "Mohammed Nokri" },
+  "homepage": "https://github.com/nokri-mohammed/claude-team",
+  "repository": "https://github.com/nokri-mohammed/claude-team",
+  "license": "MIT",
+  "keywords": ["tdd", "testing", "red-green-refactor"]
+}

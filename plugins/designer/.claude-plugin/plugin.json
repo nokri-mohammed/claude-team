@@ -1,0 +1,11 @@
+{
+  "name": "designer",
+  "displayName": "Designer",
+  "version": "0.2.0-beta.1",
+  "description": "UI/UX and logo design: the designer agent, its visual-design, design-system, responsive, accessibility, and logo-design skills, and the bundled Figma + Playwright MCP servers it verifies work against.",
+  "author": { "name": "Mohammed Nokri" },
+  "homepage": "https://github.com/nokri-mohammed/claude-team",
+  "repository": "https://github.com/nokri-mohammed/claude-team",
+  "license": "MIT",
+  "keywords": ["design", "ui", "ux", "figma", "logo-design", "accessibility"]
+}

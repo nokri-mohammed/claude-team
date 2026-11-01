@@ -1,0 +1,11 @@
+{
+  "name": "review",
+  "displayName": "Review",
+  "version": "0.2.0-beta.1",
+  "description": "Code review and security review: code-reviewer and security-reviewer agents, coding-standards and security-review skills, Conventional Comments output format, and the /code-review command.",
+  "author": { "name": "Mohammed Nokri" },
+  "homepage": "https://github.com/nokri-mohammed/claude-team",
+  "repository": "https://github.com/nokri-mohammed/claude-team",
+  "license": "MIT",
+  "keywords": ["code-review", "security-review", "quality"]
+}

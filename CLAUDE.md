@@ -4,16 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Role
 
-This repository is a hub of canonical Claude Code agent, skill, command, and hook definitions (see
-`HUB.md`), a curated team of subagents (architect, reviewers, tdd-guide, designer, etc.) that
-individual projects copy or symlink from, taking only the subset each project actually needs.
+This repository is a Claude Code marketplace (see `HUB.md`): six plugins, each a curated subset of
+the team (architect, reviewers, tdd-guide, designer, etc.), that individual projects install from
+`.claude-plugin/marketplace.json`, taking only the plugins each project actually needs.
 
 ## Current state
 
 Git repo, versioned with `commit-and-tag-version` (see `HUB.md` → Versioning & Releases). Run
-`npm test` before committing: it checks skill line limits, agent `tools:` fields, and dangling
-`references/*.md` pointers. `agents/`, `skills/`, `commands/`, `hooks/`, `HUB.md`, and
-`backlog-template.md` hold the hub's canonical definitions for spinning up per-project teams.
+`npm test` before committing: it checks skill line limits, agent `tools:` fields, dangling
+`references/*.md` pointers, JSON validity, and `claude plugin validate` against every plugin.
+`plugins/<name>/`, `.claude-plugin/marketplace.json`, `HUB.md`, and `backlog-template.md` hold the
+hub's canonical definitions for spinning up per-project teams.
 
 Keep this repository as a **sibling** of the projects that consume it, never an ancestor directory
 of one. Claude Code loads `CLAUDE.md` from every ancestor of the working directory, so if a
@@ -44,4 +45,4 @@ already owns: delegate instead of re-deriving their process in the main thread.
 | UI/UX, design systems, Figma-to-code, visual/responsive/a11y review | `designer` |
 
 A simple, single-file task doesn't need a subagent at all. Scale the team to the task, not the
-other way around (see `HUB.md` bootstrap step 6).
+other way around (see `HUB.md` → **Picking a team for a new project**).

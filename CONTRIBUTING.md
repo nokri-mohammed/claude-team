@@ -1,8 +1,7 @@
 # Contributing
 
-This hub is a community resource: a curated team of Claude Code agents, skills, commands, and
-hooks that people copy from, not a monolith everyone installs whole. Contributions that fit that
-model are welcome.
+This hub is a community resource: a marketplace of six focused Claude Code plugins, not one
+monolith everyone installs whole. Contributions that fit that model are welcome.
 
 ## Before you open a PR
 
@@ -15,30 +14,36 @@ npm test
 It enforces the same rules this hub was audited against: every `SKILL.md` under 500 lines
 (Anthropic's own guidance: split long content into `references/*.md` and point to it from
 `SKILL.md`), every agent has an explicit `tools:` allowlist (never inherit the full tool set
-silently), no skill references a `references/*.md` file that doesn't exist, and every JSON config
-file parses.
+silently), no skill references a `references/*.md` file that doesn't exist, every JSON config
+file parses, and every plugin passes `claude plugin validate`.
 
 ## What's worth contributing
 
 - **A new agent** for a role this hub doesn't cover: give it a narrow `tools:` list, a clear
-  `description` (the part Claude Code uses to decide when to delegate to it), and add it to the
-  agents table in `HUB.md`.
+  `description` (the part Claude Code uses to decide when to delegate to it), place it under the
+  plugin it belongs to (or propose a new plugin if none fits), and add it to that plugin's table
+  in `HUB.md`.
 - **A new skill**: a methodology, pattern library, or domain checklist an agent can load. Keep
   `SKILL.md` under 500 lines; move detail into `references/*.md`.
 - **A slash command** that delegates to an existing agent instead of duplicating its process.
 - **A hook**: prefer non-blocking warnings (`systemMessage`) over blocking (`decision: "block"`)
   unless the check is cheap, reliable, and something you'd genuinely want to stop on every time.
-- **An MCP config** for a tool this hub doesn't integrate with yet (add it to `.mcp.json` and
-  document the setup/approval steps in `HUB.md`, the way `designer`'s Figma + Playwright entry
-  does).
+  Reference the plugin's own bundled scripts with `${CLAUDE_PLUGIN_ROOT}`, not a `.claude/...`
+  path.
+- **An MCP config** for a tool this hub doesn't integrate with yet (add a `.mcp.json` to the
+  relevant plugin and document the setup/approval steps in `HUB.md`, the way `designer`'s Figma +
+  Playwright entry does).
 
 ## How to contribute
 
 1. Fork the repo and clone your fork locally.
 2. Create a branch named for what you're adding (`add-rust-skill`, `fix-tdd-hook`, not `patch-1`).
-3. Add your files under the matching directory (`agents/`, `skills/<name>/`, `commands/`, or
-   `hooks/scripts/`), following that directory's existing format (agent frontmatter, `SKILL.md` +
-   `references/`, command frontmatter with `description`/`argument-hint`).
+3. Add your files under the right plugin's matching directory
+   (`plugins/<plugin>/agents/`, `plugins/<plugin>/skills/<name>/`, `plugins/<plugin>/commands/`,
+   or `plugins/<plugin>/hooks/scripts/`), following that directory's existing format (agent
+   frontmatter, `SKILL.md` + `references/`, command frontmatter with
+   `description`/`argument-hint`). A genuinely new role gets its own `plugins/<name>/` with a
+   `.claude-plugin/plugin.json` and an entry in `.claude-plugin/marketplace.json`.
 4. Run `npm test` and fix anything it flags.
 5. If you added a hook, pipe-test it manually (synthesize the stdin payload it expects, confirm
    the JSON it prints is well-formed); `npm test` checks JSON syntax, not that a hook actually
