@@ -7,6 +7,15 @@ Claude Team is a curated collection of [Claude Code](https://code.claude.com) su
 the skills that back them, slash commands that delegate to them, and enforcement hooks — meant to
 be copied piecemeal into any project's `.claude/` directory, not installed wholesale.
 
+## The Guides
+
+- **[GUIDE.md](GUIDE.md)** — shorthand/TL;DR. What this is, 60-second setup, the four building
+  blocks, when to delegate. **Read this first.**
+- **[docs/LONGFORM_GUIDE.md](docs/LONGFORM_GUIDE.md)** — advanced. How agent/skill frontmatter
+  actually behaves, the SKILL.md size limit, building and verifying hooks, MCP wiring, and the
+  versioning gotchas this hub hit while being built. Read it once you're extending the hub, not
+  before.
+
 ## Why copy-based, not a plugin
 
 A plugin install is all-or-nothing. This repo is deliberately the opposite: a small project copies

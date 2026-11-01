@@ -32,6 +32,40 @@ file parses.
   document the setup/approval steps in `HUB.md`, the way `designer`'s Figma + Playwright entry
   does).
 
+## How to contribute
+
+1. Fork the repo and clone your fork locally.
+2. Create a branch named for what you're adding (`add-rust-skill`, `fix-tdd-hook`, not `patch-1`).
+3. Add your files under the matching directory — `agents/`, `skills/<name>/`, `commands/`, or
+   `hooks/scripts/` — following that directory's existing format (agent frontmatter, `SKILL.md` +
+   `references/`, command frontmatter with `description`/`argument-hint`).
+4. Run `npm test` and fix anything it flags.
+5. If you added a hook, pipe-test it manually (synthesize the stdin payload it expects, confirm
+   the JSON it prints is well-formed) — `npm test` checks JSON syntax, not that a hook actually
+   fires correctly.
+6. Commit with a [Conventional Commits](https://www.conventionalcommits.org) type (`feat:`,
+   `fix:`, `docs:`, …) — this hub's own release tooling depends on it, and a PR with a wrongly
+   typed commit will need squashing before merge anyway.
+7. Open a PR describing what you added, why it's useful, and how you tested it.
+
+## Do / Don't
+
+**Do:** keep each agent/skill/command focused on one job; write a `description` specific enough
+that Claude Code can tell when to use it without being told by name; test what you're adding
+before submitting; follow the existing file layout rather than inventing a new one; note any
+external dependency (an MCP server, a specific CLI tool) up front.
+
+**Don't:** include real secrets, API keys, or personal infrastructure details, even as examples;
+add something so niche it won't generalize beyond your one use case; submit untested hooks or
+scripts; duplicate a skill/agent that already covers the same job; require a paid-only service
+with no free or self-hosted alternative mentioned.
+
+## File naming
+
+Lowercase, hyphenated, descriptive: `security-review`, not `SecurityReview` or `sec-rev`. An
+agent's filename matches its `name:` frontmatter field; a skill's directory name matches its
+`SKILL.md` `name:` field.
+
 ## Licensing
 
 This repo is MIT (see `LICENSE`). If you're porting content from another project, confirm its
@@ -47,3 +81,8 @@ crediting the source, the same way the existing entries do.
   hub's scope coherent.
 - Large binary or dataset assets (reference image/logo libraries, model weights, etc.) — link to
   the upstream source instead of vendoring them in.
+
+## Questions?
+
+Open a [GitHub issue](https://github.com/nokri-mohammed/claude-team/issues) — for a vague idea as
+much as a concrete bug.
