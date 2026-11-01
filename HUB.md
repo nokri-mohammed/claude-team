@@ -24,7 +24,7 @@ for it. A layout like this works well:
 | security-reviewer | security-focused review (OWASP, secrets, injection) | affaan-m/ECC |
 | doc-updater | syncs docs/codemaps after a task is done | affaan-m/ECC |
 | tdd-guide | enforces write-tests-first | affaan-m/ECC |
-| designer | UI/UX design, design-to-code, Figma + Playwright-verified visual work — owns the four UI-design skills below | this hub |
+| designer | UI/UX design, design-to-code, Figma + Playwright-verified visual work, and logo/brand-mark design — owns the UI-design and logo-design skills below | this hub |
 
 ## Skills (`skills/`)
 
@@ -43,6 +43,7 @@ for it. A layout like this works well:
 | responsive-design | container queries, fluid typography, mobile-first | wshobson/agents (ui-design) |
 | accessibility-compliance | WCAG 2.2 compliance | wshobson/agents (ui-design) |
 | conventional-comments | labeled review-comment format for code-reviewer/security-reviewer output | conventionalcomments.org |
+| logo-design | logo/brand-mark design workflow (brief → concepts → SVG production kit) — owned by `designer` | kaankiziltug/logo-design-skill |
 
 Deliberately excluded: `continuous-learning*` (duplicates native auto-memory), `strategic-compact`
 (duplicates native `/compact` hints), and anything business/content/language-specific not relevant
@@ -104,7 +105,7 @@ patch-only bumps without it; verify this is still needed if Node is ever upgrade
 
 ## Project bootstrap (step 6 — hub's job, not delegated)
 
-1. `mkdir -p ~/projects/homelab-team-all/projects/<name>/{.claude/agents,.claude/skills,.claude/commands,.claude/hooks,docs,src}`
+1. `mkdir -p <your-project>/{.claude/agents,.claude/skills,.claude/commands,.claude/hooks,docs,src}`
 2. Copy/symlink only the needed agent `.md` files, skill directories, and `commands/*.md` files from here into the project's `.claude/`
 3. Write `docs/project-plan.md` (approved, Goldfish-reviewed), `docs/design/figma-link.md`, start `docs/architecture.md`
 4. Copy `backlog-template.md` → `docs/backlog.md`

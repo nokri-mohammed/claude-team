@@ -39,11 +39,69 @@ See `HUB.md` → **Project bootstrap** for the full step-by-step, including the 
 
 Full roster, sources, and the bootstrap/versioning workflow: see [`HUB.md`](HUB.md).
 
+## Key Concepts
+
+**Agents** are subagents with a restricted tool set, invoked for a specific job. Example —
+[`agents/security-reviewer.md`](agents/security-reviewer.md):
+
+```yaml
+---
+name: security-reviewer
+description: Security-focused review for OWASP risks, secrets, and injection
+tools: Read, Grep, Glob, Bash
+---
+```
+
+**Skills** are workflow/reference documents an agent loads for a task — a methodology
+(`tdd-workflow`), a pattern library (`frontend-patterns`), or a domain reference
+(`accessibility-compliance`). Example — the red-green-refactor loop in
+[`skills/tdd-workflow/SKILL.md`](skills/tdd-workflow/SKILL.md):
+
+```
+1. Write a failing test (RED)
+2. Implement the minimum code to pass (GREEN)
+3. Refactor without changing behavior (IMPROVE)
+4. Repeat
+```
+
+**Commands** are slash commands that delegate to an agent instead of re-deriving its process
+inline. Example — [`commands/code-review.md`](commands/code-review.md) delegates `/code-review`
+to the `code-reviewer` agent (and `security-reviewer` when the diff warrants it).
+
+**Hooks** fire on tool events and can warn or block. Example —
+[`hooks/scripts/check-commit-msg.sh`](hooks/scripts/check-commit-msg.sh) warns (non-blocking)
+when a commit doesn't follow Conventional Commits:
+
+```bash
+msg=$(git log -1 --format=%s 2>/dev/null)
+pattern='^(feat|fix|chore|docs|refactor|perf|test|build|ci|revert)(\([a-z0-9_.-]+\))?!?: '
+if [ -z "$msg" ] || echo "$msg" | grep -qE "$pattern"; then
+  echo '{}'
+else
+  jq -n --arg m "$msg" '{systemMessage: ("Commit message \"" + $m + "\" does not follow Conventional Commits...")}'
+fi
+```
+
 ## Versioning
 
 This repo versions itself with [`commit-and-tag-version`](https://github.com/absolute-version/commit-and-tag-version)
 from [Conventional Commits](https://www.conventionalcommits.org) — see `HUB.md` → Versioning &
 Releases and `CHANGELOG.md` for the release history.
+
+## Running Tests
+
+```bash
+npm test   # scripts/validate-hub.sh: SKILL.md line limits, agent tools: fields, dangling refs, JSON validity
+```
+
+Run it before committing, and after adding any new agent or skill.
+
+## Contributing
+
+Contributions are welcome — a new agent, a new skill, a better hook, or an MCP config for a tool
+this hub doesn't cover yet. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the process and the
+compliance bar every addition has to clear (explicit `tools:`, SKILL.md ≤500 lines, no dangling
+references, `npm test` passing).
 
 ## License
 
