@@ -70,7 +70,7 @@ Flag these patterns immediately:
 
 ## Output Format
 
-Write every finding as a **Conventional Comment** (conventionalcomments.org — see the
+Write every finding as a **Conventional Comment** (conventionalcomments.org, see the
 `conventional-comments` skill for the full spec): `<label> [decorations]: <subject>`, then
 discussion. Map this table's severities onto labels the same way `code-reviewer` does:
 
@@ -85,7 +85,7 @@ discussion. Map this table's severities onto labels the same way `code-reviewer`
 issue (blocking): String-concatenated SQL in query builder
 
 File: src/db/markets.ts:88
-Interpolates `marketId` directly into the query string — classic SQL injection.
+Interpolates `marketId` directly into the query string: classic SQL injection.
 
 suggestion: Use a parameterized query instead.
 ```

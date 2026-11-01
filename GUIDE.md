@@ -1,9 +1,9 @@
-# Shorthand Guide — read this first
+# Shorthand Guide: read this first
 
 ## What this is
 
-A hub of canonical Claude Code agents, skills, commands, and hooks. You don't install it whole —
-you copy the handful of pieces a given project actually needs into that project's `.claude/`.
+A hub of canonical Claude Code agents, skills, commands, and hooks. You don't install it whole.
+You copy the handful of pieces a given project actually needs into that project's `.claude/`.
 
 ## 60-second setup
 
@@ -16,7 +16,7 @@ cp commands/code-review.md      <your-project>/.claude/commands/
 cp hooks/hooks.json hooks/scripts -r  <your-project>/.claude/hooks/
 ```
 
-Start minimal — one engineer-role agent, one reviewer — and add more only as the project's scope
+Start minimal (one engineer-role agent, one reviewer) and add more only as the project's scope
 actually demands it. Full step-by-step, including the optional Figma/Playwright MCP setup for
 `designer`: `HUB.md` → **Project bootstrap**.
 
@@ -39,7 +39,7 @@ actually demands it. Full step-by-step, including the optional Figma/Playwright 
 | Test-first development | `tdd-guide` / `/tdd` |
 | UI/UX, Figma-to-code, logo/brand design | `designer` |
 
-A single-file task doesn't need any of this — scale the team to the task.
+A single-file task doesn't need any of this. Scale the team to the task.
 
 ## Versioning, in one line
 
@@ -48,6 +48,6 @@ history, so commits must follow [Conventional Commits](https://www.conventionalc
 
 ## Going deeper
 
-This is the "read first" version. For the mechanics underneath — how agent `tools:`/`skills:`
+This is the "read first" version. For the mechanics underneath, how agent `tools:`/`skills:`
 frontmatter actually behaves, the SKILL.md size limit and why, how hooks are built and verified,
-MCP wiring, and the versioning gotchas we hit building this — see **[LONGFORM_GUIDE.md](docs/LONGFORM_GUIDE.md)**.
+MCP wiring, and the versioning gotchas we hit building this, see **[LONGFORM_GUIDE.md](docs/LONGFORM_GUIDE.md)**.

@@ -259,7 +259,7 @@ const usersWithPosts = await db.query(`
 ## Review Output Format
 
 Every finding is written as a **Conventional Comment** (conventionalcomments.org, see the
-`conventional-comments` skill for the full spec) — `<label> [decorations]: <subject>`, then
+`conventional-comments` skill for the full spec): `<label> [decorations]: <subject>`, then
 discussion. Severity still drives triage and the summary table; it maps onto the comment like this:
 
 | Severity | Conventional Comment label |
@@ -281,7 +281,7 @@ suggestion: Move to environment variable and add to .gitignore/.env.example
   const apiKey = process.env.API_KEY;   // GOOD
 ```
 
-If a review genuinely finds nothing wrong, still look for one honest `praise:` comment to include —
+If a review genuinely finds nothing wrong, still look for one honest `praise:` comment to include,
 per the standard, never a manufactured one.
 
 ### Summary Format

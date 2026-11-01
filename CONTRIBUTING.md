@@ -13,20 +13,20 @@ npm test
 ```
 
 It enforces the same rules this hub was audited against: every `SKILL.md` under 500 lines
-(Anthropic's own guidance — split long content into `references/*.md` and point to it from
+(Anthropic's own guidance: split long content into `references/*.md` and point to it from
 `SKILL.md`), every agent has an explicit `tools:` allowlist (never inherit the full tool set
 silently), no skill references a `references/*.md` file that doesn't exist, and every JSON config
 file parses.
 
 ## What's worth contributing
 
-- **A new agent** for a role this hub doesn't cover — give it a narrow `tools:` list, a clear
+- **A new agent** for a role this hub doesn't cover: give it a narrow `tools:` list, a clear
   `description` (the part Claude Code uses to decide when to delegate to it), and add it to the
   agents table in `HUB.md`.
-- **A new skill** — a methodology, pattern library, or domain checklist an agent can load. Keep
+- **A new skill**: a methodology, pattern library, or domain checklist an agent can load. Keep
   `SKILL.md` under 500 lines; move detail into `references/*.md`.
 - **A slash command** that delegates to an existing agent instead of duplicating its process.
-- **A hook** — prefer non-blocking warnings (`systemMessage`) over blocking (`decision: "block"`)
+- **A hook**: prefer non-blocking warnings (`systemMessage`) over blocking (`decision: "block"`)
   unless the check is cheap, reliable, and something you'd genuinely want to stop on every time.
 - **An MCP config** for a tool this hub doesn't integrate with yet (add it to `.mcp.json` and
   document the setup/approval steps in `HUB.md`, the way `designer`'s Figma + Playwright entry
@@ -36,15 +36,15 @@ file parses.
 
 1. Fork the repo and clone your fork locally.
 2. Create a branch named for what you're adding (`add-rust-skill`, `fix-tdd-hook`, not `patch-1`).
-3. Add your files under the matching directory — `agents/`, `skills/<name>/`, `commands/`, or
-   `hooks/scripts/` — following that directory's existing format (agent frontmatter, `SKILL.md` +
+3. Add your files under the matching directory (`agents/`, `skills/<name>/`, `commands/`, or
+   `hooks/scripts/`), following that directory's existing format (agent frontmatter, `SKILL.md` +
    `references/`, command frontmatter with `description`/`argument-hint`).
 4. Run `npm test` and fix anything it flags.
 5. If you added a hook, pipe-test it manually (synthesize the stdin payload it expects, confirm
-   the JSON it prints is well-formed) — `npm test` checks JSON syntax, not that a hook actually
+   the JSON it prints is well-formed); `npm test` checks JSON syntax, not that a hook actually
    fires correctly.
 6. Commit with a [Conventional Commits](https://www.conventionalcommits.org) type (`feat:`,
-   `fix:`, `docs:`, …) — this hub's own release tooling depends on it, and a PR with a wrongly
+   `fix:`, `docs:`, …). This hub's own release tooling depends on it, and a PR with a wrongly
    typed commit will need squashing before merge anyway.
 7. Open a PR describing what you added, why it's useful, and how you tested it.
 
@@ -75,14 +75,14 @@ crediting the source, the same way the existing entries do.
 
 ## What doesn't belong here
 
-- Anything that duplicates a native Claude Code feature (auto-memory, `/compact`, etc.) — this
+- Anything that duplicates a native Claude Code feature (auto-memory, `/compact`, etc.). This
   hub deliberately excludes content like that; see the note in `HUB.md`.
-- Business-, content-, or language-specific skills unrelated to software engineering — keep the
+- Business-, content-, or language-specific skills unrelated to software engineering; keep the
   hub's scope coherent.
-- Large binary or dataset assets (reference image/logo libraries, model weights, etc.) — link to
+- Large binary or dataset assets (reference image/logo libraries, model weights, etc.); link to
   the upstream source instead of vendoring them in.
 
 ## Questions?
 
-Open a [GitHub issue](https://github.com/nokri-mohammed/claude-team/issues) — for a vague idea as
+Open a [GitHub issue](https://github.com/nokri-mohammed/claude-team/issues), for a vague idea as
 much as a concrete bug.

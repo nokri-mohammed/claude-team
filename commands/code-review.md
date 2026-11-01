@@ -8,4 +8,4 @@ Delegate to the `code-reviewer` subagent to review the pending changes: $ARGUMEN
 If the diff touches authentication, secrets, payments, user input handling, or anything else on the
 `security-review` skill's checklist, also delegate to `security-reviewer` and report both results
 together. Findings from either agent are written as Conventional Comments (see the
-`conventional-comments` skill) — don't flatten them back into prose.
+`conventional-comments` skill); don't flatten them back into prose.

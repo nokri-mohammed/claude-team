@@ -67,7 +67,7 @@ SOFTWARE.
 ## kaankiziltug/logo-design-skill
 
 Source for: `logo-design` skill (`SKILL.md`, `references/*.md`, `scripts/*.py`, `templates/*`).
-The upstream repo's `assets/library/` (1,400+ reference SVG logos) is **not** included here — those
+The upstream repo's `assets/library/` (1,400+ reference SVG logos) is **not** included here: those
 files are trademarks of their respective owners (see the upstream `TRADEMARKS.md`), not MIT-licensed,
 and out of scope for this hub. `skills/logo-design/SKILL.md` notes the library is unavailable.
 

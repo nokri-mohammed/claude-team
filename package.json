@@ -2,7 +2,7 @@
   "name": "claude-team",
   "version": "0.2.0-beta.1",
   "private": true,
-  "description": "Canonical Claude Code agents, skills, commands, and hooks — copy only the team your project needs.",
+  "description": "Canonical Claude Code agents, skills, commands, and hooks. Copy only the team your project needs.",
   "license": "MIT",
   "repository": {
     "type": "git",
