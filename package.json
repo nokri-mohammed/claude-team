@@ -4,6 +4,7 @@
   "private": true,
   "description": "Canonical agent and skill definitions for the homelab-team-all projects.",
   "scripts": {
+    "test": "bash scripts/validate-hub.sh",
     "release": "commit-and-tag-version",
     "release:beta": "commit-and-tag-version --prerelease beta"
   },

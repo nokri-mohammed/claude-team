@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/scripts/check-backlog.sh 2>/dev/null || true",
+            "statusMessage": "Checking backlog entry..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit *)",
+            "command": "bash .claude/hooks/scripts/check-commit-msg.sh 2>/dev/null || true",
+            "statusMessage": "Checking commit message format..."
+          }
+        ]
+      }
+    ]
+  }
+}

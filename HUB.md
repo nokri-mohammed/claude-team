@@ -40,6 +40,38 @@ Deliberately excluded: `continuous-learning*` (duplicates native auto-memory), `
 (duplicates native `/compact` hints), and anything business/content/language-specific not relevant
 to this stack.
 
+## Commands (`commands/`)
+
+Thin slash commands that delegate to the agents above instead of duplicating their process inline.
+
+| Command | Delegates to |
+|---|---|
+| `/tdd` | `tdd-guide` |
+| `/plan` | `architect` |
+| `/code-review` | `code-reviewer` (+ `security-reviewer` when the diff warrants it) |
+| `/build-fix` | self-contained — no dedicated agent for this |
+| `/refactor-clean` | self-contained — no dedicated agent for this |
+
+## Hooks (`hooks/`)
+
+`hooks.json` + `scripts/` — copy both into a project's `.claude/hooks/` (step 5 below). Two hooks:
+
+- **Stop** → `check-backlog.sh`: blocks finishing a task unless `docs/backlog.md` has an entry
+  dated today. Stateless (just checks today's date appears in the file), not a true "new line"
+  check.
+- **PostToolUse** (`git commit`) → `check-commit-msg.sh`: warns (never blocks) if the commit just
+  made doesn't follow Conventional Commits. Reads the message back from `git log`, not the raw
+  bash invocation, so it's correct whether the commit used `-m`, a heredoc body, or an editor.
+
+Both degrade silently (no-op) if `docs/backlog.md` or `.git` doesn't exist yet, so they're safe to
+copy into a project before it's fully bootstrapped.
+
+## Validation (`scripts/validate-hub.sh`)
+
+Run via `npm test`. Checks the hub against the rules from its own audit: every `SKILL.md` under
+500 lines, every agent has an explicit `tools:` field, no dangling `references/*.md` pointers, and
+every JSON config file parses. Run it before committing, and after adding any new agent or skill.
+
 ## Versioning & Releases
 
 The hub is a git repo, versioned internally with [`commit-and-tag-version`](https://github.com/absolute-version/commit-and-tag-version)
@@ -64,11 +96,11 @@ patch-only bumps without it; verify this is still needed if Node is ever upgrade
 
 ## Project bootstrap (step 6 — hub's job, not delegated)
 
-1. `mkdir -p ~/projects/homelab-team-all/projects/<name>/{.claude/agents,.claude/skills,.claude/hooks,docs,src}`
-2. Copy/symlink only the needed agent `.md` files and skill directories from here into the project's `.claude/`
+1. `mkdir -p ~/projects/homelab-team-all/projects/<name>/{.claude/agents,.claude/skills,.claude/commands,.claude/hooks,docs,src}`
+2. Copy/symlink only the needed agent `.md` files, skill directories, and `commands/*.md` files from here into the project's `.claude/`
 3. Write `docs/project-plan.md` (approved, Goldfish-reviewed), `docs/design/figma-link.md`, start `docs/architecture.md`
 4. Copy `backlog-template.md` → `docs/backlog.md`
-5. Set up `.claude/hooks/hooks.json`: block task completion unless the backlog line got a new dated entry; enforce scaling rule (simple task = one agent, 3-10 tool calls)
+5. Copy `hooks/hooks.json` and `hooks/scripts/` into `.claude/hooks/` — enforces the backlog-entry rule and warns on non-conventional commits (see Hooks above). Still enforce the scaling rule by instruction (simple task = one agent, 3-10 tool calls) — that part isn't hook-automated.
 6. Decide team size for *this* project — default minimal (one engineer, one reviewer), add roles only if scope needs them
 7. If the `designer` agent is in scope for this project, also copy `hub/.mcp.json` to the project
    root (not `.claude/`) as `.mcp.json`, and commit it. First run in that project prompts to approve
