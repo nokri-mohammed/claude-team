@@ -1,4 +1,4 @@
-# Claude Team
+<img src="assets/logo/readme-header.png" alt="Claude Team" width="420">
 
 Canonical Claude Code agents, skills, commands, and hooks — copy only the team your project needs.
 

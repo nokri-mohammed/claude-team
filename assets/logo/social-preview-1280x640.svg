@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-labelledby="title">
+  <title id="title">Claude Team — GitHub social preview</title>
+  <!-- One-off raster export source: uses live <text> intentionally (rasterized once to PNG,
+       not a scalable logo master). Font stack assumes a monospace system font; re-render after
+       any edit with cairosvg/a Chromium browser rather than relying on live text in the repo. -->
+  <rect x="0" y="0" width="1280" height="640" fill="#141414"/>
+  <g transform="translate(140,192)" fill="#f5f3ee" fill-opacity="0.6">
+    <polygon points="92,80 162,150 92,220 22,150"/>
+    <polygon points="128,42 198,112 128,182 58,112"/>
+    <polygon points="164,80 234,150 164,220 94,150"/>
+  </g>
+  <text x="480" y="300" font-family="'Ubuntu Mono','DejaVu Sans Mono',ui-monospace,monospace"
+        font-size="76" font-weight="700" letter-spacing="1" fill="#f5f3ee">Claude Team</text>
+  <text x="482" y="352" font-family="'Ubuntu Mono','DejaVu Sans Mono',ui-monospace,monospace"
+        font-size="26" letter-spacing="0.5" fill="#9b968c">subagents · skills · commands · hooks</text>
+  <text x="482" y="392" font-family="'Ubuntu Mono','DejaVu Sans Mono',ui-monospace,monospace"
+        font-size="22" letter-spacing="0.5" fill="#6f6a60">a ready-made team for Claude Code — copy in what you need</text>
+</svg>

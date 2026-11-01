@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title">
+  <title id="title">Claude Team — CT Cursor Monogram concept</title>
+  <g transform="translate(-8,-12)">
+    <path fill="none" stroke="#141414" stroke-width="32" stroke-linecap="round"
+          d="M163.15 174.3 A72 72 0 1 1 163.15 81.7"/>
+    <g fill="#141414">
+      <rect x="140" y="84" width="96" height="32" rx="16"/>
+      <rect x="172" y="84" width="32" height="140" rx="16"/>
+    </g>
+  </g>
+</svg>

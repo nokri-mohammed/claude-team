@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200" role="img" aria-labelledby="title">
+  <title id="title">Claude Team — README header lockup</title>
+  <!-- One-off raster export source (live <text>, rasterize before use in Markdown). -->
+  <g transform="translate(20,20) scale(0.625)" fill="#141414" fill-opacity="0.6">
+    <polygon points="92,80 162,150 92,220 22,150"/>
+    <polygon points="128,42 198,112 128,182 58,112"/>
+    <polygon points="164,80 234,150 164,220 94,150"/>
+  </g>
+  <text x="220" y="112" font-family="'Ubuntu Mono','DejaVu Sans Mono',ui-monospace,monospace"
+        font-size="54" font-weight="700" letter-spacing="0.5" fill="#141414">Claude Team</text>
+  <text x="222" y="150" font-family="'Ubuntu Mono','DejaVu Sans Mono',ui-monospace,monospace"
+        font-size="19" letter-spacing="0.5" fill="#726d62">subagents · skills · commands · hooks</text>
+</svg>

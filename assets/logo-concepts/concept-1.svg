@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title">
+  <title id="title">Claude Team — Tag Team concept</title>
+  <g fill="none" stroke="#141414" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M112 72 L56 128 L112 184"/>
+    <path d="M144 72 L200 128 L144 184"/>
+  </g>
+  <g fill="#141414">
+    <circle cx="128" cy="88" r="11"/>
+    <circle cx="128" cy="128" r="15"/>
+    <circle cx="128" cy="168" r="11"/>
+  </g>
+</svg>
