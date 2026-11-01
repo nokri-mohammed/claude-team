@@ -1,6 +1,6 @@
 {
   "name": "homelab-hub",
-  "version": "0.2.0-beta.0",
+  "version": "0.2.0-beta.1",
   "private": true,
   "description": "Canonical agent and skill definitions for the homelab-team-all projects.",
   "scripts": {
