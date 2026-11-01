@@ -43,6 +43,7 @@ for it. A layout like this works well:
 | responsive-design | container queries, fluid typography, mobile-first | wshobson/agents (ui-design) |
 | accessibility-compliance | WCAG 2.2 compliance | wshobson/agents (ui-design) |
 | conventional-comments | labeled review-comment format for code-reviewer/security-reviewer output | conventionalcomments.org |
+| asd-ste100 | writing standard for hub docs, adapted from ASD-STE100 (Simplified Technical English); used by `doc-updater` | this hub |
 | logo-design | logo/brand-mark design workflow (brief → concepts → SVG production kit), owned by `designer` | kaankiziltug/logo-design-skill |
 
 Deliberately excluded: `continuous-learning*` (duplicates native auto-memory), `strategic-compact`
