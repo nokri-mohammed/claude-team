@@ -40,6 +40,28 @@ Deliberately excluded: `continuous-learning*` (duplicates native auto-memory), `
 (duplicates native `/compact` hints), and anything business/content/language-specific not relevant
 to this stack.
 
+## Versioning & Releases
+
+The hub is a git repo, versioned internally with [`commit-and-tag-version`](https://github.com/absolute-version/commit-and-tag-version)
+(the maintained fork of `standard-version` — bumps semver, writes `CHANGELOG.md`, tags the
+commit; no CI, no npm publish, nothing external).
+
+**Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org)**
+(`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, etc., with a `BREAKING CHANGE:` footer when
+needed) — the version bump and changelog are both derived from these, so a wrongly-typed commit
+produces a wrong release.
+
+To cut a release:
+
+```bash
+npm run release:beta   # 0.x.0-beta.N — use this until the hub is stable enough to drop beta
+npm run release        # drops the prerelease tag once ready (feat -> minor, fix -> patch, BREAKING CHANGE -> major)
+```
+
+Both read `.versionrc.json` (pins the `conventionalcommits` preset — required on this machine's
+Node 18, since `commit-and-tag-version`'s own default-preset resolution silently fell back to
+patch-only bumps without it; verify this is still needed if Node is ever upgraded past 22).
+
 ## Project bootstrap (step 6 — hub's job, not delegated)
 
 1. `mkdir -p ~/projects/homelab-team-all/projects/<name>/{.claude/agents,.claude/skills,.claude/hooks,docs,src}`
