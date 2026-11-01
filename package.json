@@ -1,8 +1,13 @@
 {
-  "name": "homelab-hub",
+  "name": "claude-team",
   "version": "0.2.0-beta.1",
   "private": true,
-  "description": "Canonical agent and skill definitions for the homelab-team-all projects.",
+  "description": "Canonical Claude Code agents, skills, commands, and hooks — copy only the team your project needs.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nokri-mohammed/claude-team.git"
+  },
   "scripts": {
     "test": "bash scripts/validate-hub.sh",
     "release": "commit-and-tag-version",

@@ -1,10 +1,18 @@
-# Homelab Team — Hub
+# Claude Team — Hub
 
-Canonical agent and skill definitions. Projects under `~/projects/homelab-team-all/projects/<name>/`
-copy or symlink only the subset they need into their own `.claude/agents/` and `.claude/skills/` —
-nothing here is auto-visible to any project (deliberately kept outside `~/.claude`). `hub/` and
-`projects/` are siblings inside `homelab-team-all/`, so this hub's own `CLAUDE.md` never becomes
-an ancestor of any project directory and never auto-loads into one.
+Canonical agent and skill definitions. Your projects copy or symlink only the subset they need
+into their own `.claude/agents/` and `.claude/skills/` — nothing here is auto-visible to any
+project unless you copy it in. Keep this repo as a **sibling** of your project directories, never
+an ancestor of one, so this hub's own `CLAUDE.md` never auto-loads into a project that didn't ask
+for it. A layout like this works well:
+
+```
+~/code/
+├── claude-team/          # this repo
+└── projects/
+    ├── my-app/
+    └── another-app/
+```
 
 ## Agents (`agents/`)
 
