@@ -7,8 +7,9 @@ notices are reproduced here as required by their license.
 ## affaan-m/ECC
 
 Source for: `architect`, `code-reviewer`, `security-reviewer`, `doc-updater`, `tdd-guide` agents;
-`coding-standards`, `frontend-patterns`, `backend-patterns`, `api-design`, `tdd-workflow`,
-`security-review`, `verification-loop` skills.
+`coding-standards`, `react-patterns`, `node-patterns`, `api-design`, `tdd-workflow`,
+`security-review`, `verification-loop` skills. `react-patterns` and `node-patterns` were
+`frontend-patterns` and `backend-patterns` upstream, renamed here.
 
 ```
 MIT License

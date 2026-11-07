@@ -67,7 +67,7 @@ never guessed from memory.
 - For a spec handoff to an engineer: layout, tokens used, component props/variants, interaction
   states (hover/focus/active/disabled), responsive breakpoints, and edge cases (empty state, long
   text, loading, error).
-- For direct implementation: follow the project's own `frontend-patterns`/`coding-standards` skills
+- For direct implementation: follow the project's own `react-patterns`/`coding-standards` skills
   if those are present in this project's `.claude/skills/`; a designer's code still has to pass
   `code-reviewer`.
 

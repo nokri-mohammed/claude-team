@@ -75,8 +75,9 @@ No dedicated agent. Any agent in the project can load these.
 
 | Component | Role | Source |
 |---|---|---|
-| `frontend-patterns` (skill) | React/Next.js patterns | affaan-m/ECC |
-| `backend-patterns` (skill) | Node/Express/Next.js API patterns | affaan-m/ECC |
+| `react-patterns` (skill) | React/Next.js patterns | affaan-m/ECC |
+| `node-patterns` (skill) | Node/Express/Next.js API patterns | affaan-m/ECC |
+| `rust-patterns` (skill) | explicit Rust house rules (no shorthand, comments above, services/ + unit tests) with good/bad examples | this hub |
 
 ### `plugins/essentials`
 

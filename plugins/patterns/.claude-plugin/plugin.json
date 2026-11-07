@@ -2,10 +2,19 @@
   "name": "patterns",
   "displayName": "Patterns",
   "version": "0.2.0-beta.1",
-  "description": "Framework pattern libraries with no dedicated agent: frontend-patterns (React/Next.js) and backend-patterns (Node/Express/Next.js API). Any agent can load these.",
-  "author": { "name": "Mohammed Nokri" },
+  "description": "Pattern libraries with no dedicated agent: react-patterns (React/Next.js), node-patterns (Node/Express/Next.js API) and rust-patterns (explicit, no-shorthand Rust). Any agent can load these.",
+  "author": {
+    "name": "Mohammed Nokri"
+  },
   "homepage": "https://github.com/nokri-mohammed/claude-team",
   "repository": "https://github.com/nokri-mohammed/claude-team",
   "license": "MIT",
-  "keywords": ["frontend", "backend", "patterns", "react", "node"]
+  "keywords": [
+    "frontend",
+    "backend",
+    "patterns",
+    "react",
+    "node",
+    "rust"
+  ]
 }

@@ -34,7 +34,7 @@
       "name": "patterns",
       "source": "patterns",
       "category": "reference",
-      "tags": ["frontend", "backend", "patterns"]
+      "tags": ["frontend", "backend", "rust", "patterns"]
     },
     {
       "name": "essentials",

@@ -70,7 +70,7 @@ You read the output. The executives do the work. That's the whole model.
 | `tdd` | tdd-guide, tdd-workflow, `/tdd` | `claude plugin install tdd@claude-team` |
 | `architecture` | architect, the four C4 agents, api-design, before-you-build, `/plan` | `claude plugin install architecture@claude-team` |
 | `designer` | designer, UI/logo skills, bundled Figma + Playwright MCP | `claude plugin install designer@claude-team` |
-| `patterns` | frontend-patterns, backend-patterns (no dedicated agent) | `claude plugin install patterns@claude-team` |
+| `patterns` | rust-patterns, node-patterns, react-patterns (no dedicated agent) | `claude plugin install patterns@claude-team` |
 | `essentials` | doc-updater, verification-loop, asd-ste100, `/build-fix`, `/refactor-clean`, the backlog and commit-message hooks | `claude plugin install essentials@claude-team` |
 
 Each plugin updates independently: `claude plugin update <plugin>@claude-team`, or turn on
@@ -91,7 +91,7 @@ tools: Read, Grep, Glob, Bash
 ```
 
 **Skills** are workflow or reference documents an agent loads for a task: a methodology
-(`tdd-workflow`), a pattern library (`frontend-patterns`), or a domain reference
+(`tdd-workflow`), a pattern library (`react-patterns`), or a domain reference
 (`accessibility-compliance`). Example: the red-green-refactor loop in
 [`plugins/tdd/skills/tdd-workflow/SKILL.md`](plugins/tdd/skills/tdd-workflow/SKILL.md).
 

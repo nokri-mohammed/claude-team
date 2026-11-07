@@ -70,7 +70,7 @@ nitpick: `little star` => `little bat`
 
 ```
 praise: Clean separation between the fetch and the validation layer here, exactly the service
-pattern from frontend-patterns.
+pattern from react-patterns.
 ```
 
 ```

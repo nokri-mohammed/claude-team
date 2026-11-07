@@ -43,7 +43,7 @@ model: sonnet
 
 This is Anthropic's own guidance, not a stylistic choice: keep `SKILL.md` under 500 lines, and
 move detailed reference material into `references/*.md`, linked from `SKILL.md`. Every skill in
-this hub that started over the limit (`frontend-patterns`, `tdd-workflow`, `backend-patterns`,
+this hub that started over the limit (`react-patterns`, `tdd-workflow`, `node-patterns`,
 `coding-standards`, `api-design`, `security-review`) was split this way, on clean section
 boundaries, never mid-example. When you add a new skill, write the workflow/decision-making part
 in `SKILL.md` and push exhaustive examples/checklists into `references/`.
