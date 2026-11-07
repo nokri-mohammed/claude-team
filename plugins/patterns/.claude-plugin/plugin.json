@@ -1,7 +1,7 @@
 {
   "name": "patterns",
   "displayName": "Patterns",
-  "version": "0.2.0-beta.1",
+  "version": "0.3.0-beta.0",
   "description": "Pattern libraries with no dedicated agent: react-patterns (React/Next.js), node-patterns (Node/Express/Next.js API) and rust-patterns (explicit, no-shorthand Rust). Any agent can load these.",
   "author": {
     "name": "Mohammed Nokri"
