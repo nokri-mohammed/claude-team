@@ -26,6 +26,12 @@ Not allowed: `if let`, `while let`, `?`, `.expect(...)`, `unwrap_or`, `unwrap_or
 `map_or`, long iterator chains (`.iter().map().filter().collect()`), closures where a loop
 works, struct field init shorthand.
 
+One exception: destructuring a pattern keeps the short form. When unpacking a struct or enum
+variant in a `match` arm or `let`, write `Command::Report { daemon, device_id }`, not
+`{ daemon: daemon, device_id: device_id }`. Rust's own `non_shorthand_field_patterns` warning
+flags the long form, and CI treats warnings as errors. Building a struct still uses the long
+form (`Foo { bar: bar }`).
+
 `.unwrap()` is allowed in tests only.
 
 Bad:
